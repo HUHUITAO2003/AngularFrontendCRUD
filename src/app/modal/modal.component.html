@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We">
+
+</head>
+
+<body>
+    <div id="inserisci">
+        <h4>Inserisci un nuovo dipendente!</h4><br>
+        <table id="modal">
+            <tr>
+                <td>
+                    <label>First name: </label>
+                </td>
+                <td>
+                    <input type="text" #firstName>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Last name: </label>
+                </td>
+                <td>
+                    <input type="text" #lastName>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Gender: </label>
+                </td>
+                <td>
+                    <input type="text" #gender>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Hire date: </label>
+                </td>
+                <td>
+                    <input type="text" #hireDate>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Birth date: </label>
+                </td>
+                <td>
+                    <input type="text" #birthDate>
+                </td>
+            </tr>
+
+        </table><br><br>
+
+        <a href="javascript:void(0)" [routerLink]="['/']" ><button type="button" class="btn btn-success"
+            (click)="post(firstName.value, lastName.value, gender.value, hireDate.value, birthDate.value)">Inserisci</button></a>
+
+    </div>
+</body>
+
+</html>

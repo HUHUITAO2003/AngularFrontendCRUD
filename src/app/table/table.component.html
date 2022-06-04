@@ -1,0 +1,110 @@
+<html>
+
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Dipendenti</h2>
+        <button (click)="modifica()" class="btn btn-primary titolo">{{buttontext}}</button>
+        <a href="javascript:void(0)" [routerLink]="['/modal']" ><button type="button" class="btn btn-success titolo">Aggiungi</button></a><br><br>
+        <table class="table table-striped table-bordered text-center">
+            <thead>
+                <tr>
+                    <th class="col-1">ID</th>
+                    <th class="col-2">Nome</th>
+                    <th class="col-2">Cognome</th>
+                    <th class="col-1">Sesso</th>
+                    <th class="col-2">Data d'assunzione</th>
+                    <th class="col-2">Data di nascita</th>
+                    <th class="col-2">Elimina</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let el of dati['employees']; index as i">
+                    <td>{{el.id}}</td>
+                    <td><input type="text" [className]="readonly ? 'read' : ''" [(ngModel)]="el.firstName" [readonly]="readonly"></td>
+                    <td><input type="text" [className]="readonly ? 'read' : ''" [(ngModel)]="el.lastName" [readonly]="readonly"></td>
+                    <td><input type="text" [className]="readonly ? 'read' : ''" [(ngModel)]="el.gender" style="width:50px" [readonly]="readonly"></td>
+                    <td><input type="text" [className]="readonly ? 'read' : ''" [(ngModel)]="el.hireDate" [readonly]="readonly"></td>
+                    <td><input type="text" [className]="readonly ? 'read' : ''" [(ngModel)]="el.birthDate" [readonly]="readonly"></td>
+                    <td>
+                        <button (click)="elimina(i)" class="btn btn-danger">Elimina</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+    <div class="modal fade" id="aggiungimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Aggiungi dipendente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Nome:</label>
+                            <input type="text" class="form-control" id="nome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Cognome:</label>
+                            <input type="text" class="form-control" id="cognome">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="aggiungi"
+                        data-bs-dismiss="modal">Aggiungi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modifica dipendente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Nome:</label>
+                            <input type="text" class="form-control" id="editnome" value="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Cognome:</label>
+                            <input type="text" class="form-control" id="editcognome" value="">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="salva" data-bs-dismiss="modal"
+                        value="2">salva</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--
+    <div class="container text-center">
+        <button type="button" id="first" class="btn btn-light pagina zero">Prima</button>
+        <button type="button" id="prev" class="btn btn-light pagina zero">Precedente</button>
+        <button type="button" id="self" class="btn btn-light"></button>
+        <button type="button" id="next" class="btn btn-light pagina ultm">Prossima</button>
+        <button type="button" id="last" class="btn btn-light pagina ultm">Ultima</button>
+
+    </div>-->
+</body>
+
+</html>
