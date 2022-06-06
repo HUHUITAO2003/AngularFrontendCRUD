@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Employees } from '../types/Employees';
 import { DataService } from '../data.service';
-import { Dati } from '../types/dati';
+import { Dati } from '../types/Dati';
 
 @Component({
   selector: 'app-table',
@@ -9,14 +9,23 @@ import { Dati } from '../types/dati';
   styleUrls: ['./table.component.css']
 })
 
+@Component({
+  selector: 'table-basic-example',
+  styleUrls: ['table-basic-example.css'],
+  templateUrl: 'table-basic-example.html',
+})
+export class TableBasicExample {
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  dataSource = dati.employee;
+}
 
 export class TableComponent implements OnInit {
   poi: Employees[] = [];
   dati: Dati = new Dati(1,this.poi);
   readonly : boolean = true;
   username: string = '';
-  buttontext : string = 'Modifica'
-
+  buttontext : string = 'Modifica';
+  modifyID: number = -1;
 
   constructor(private data:DataService) { }
 
@@ -28,17 +37,12 @@ export class TableComponent implements OnInit {
     this.dati.employees.splice(index, 1);
   }
 
-  modifica = () => {
-    this.readonly = !this.readonly;
-    switch(this.readonly){
-      case true :
-        this.buttontext = "Modifica";
-        break;
+  modifica = (i : number) => {
+    this.modifyID = i;
+  }
 
-      case false :
-        this.buttontext = "Conferma";
-        break;
-    }
+  conferma = () =>{
+    this.modifyID = -1;
   }
 
 

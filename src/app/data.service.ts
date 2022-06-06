@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { Dati } from "./types/dati";
+import { Dati } from "./types/Dati";
 import { Employees } from "./types/Employees";
 
 @Injectable()

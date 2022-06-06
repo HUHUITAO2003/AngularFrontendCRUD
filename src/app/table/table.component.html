@@ -9,8 +9,71 @@
 <body>
     <div class="container">
         <h2>Dipendenti</h2>
-        <button (click)="modifica()" class="btn btn-primary titolo">{{buttontext}}</button>
+        
         <a href="javascript:void(0)" [routerLink]="['/modal']" ><button type="button" class="btn btn-success titolo">Aggiungi</button></a><br><br>
+
+
+
+        <table mat-table [dataSource]="dati.employee" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> First name </th>
+              <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef> Last name </th>
+              <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef> gender </th>
+              <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+                <th mat-header-cell *matHeaderCellDef> Hire date </th>
+                <td mat-cell *matCellDef="let element"> {{element.hireDate}} </td>
+              </ng-container>
+          
+              <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+                <th mat-header-cell *matHeaderCellDef> gender </th>
+                <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
+              </ng-container>
+            
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <table class="table table-striped table-bordered text-center">
             <thead>
                 <tr>
@@ -26,13 +89,19 @@
             <tbody>
                 <tr *ngFor="let el of dati['employees']; index as i">
                     <td>{{el.id}}</td>
-                    <td><input type="text" [className]="readonly ? 'read' : ''" [(ngModel)]="el.firstName" [readonly]="readonly"></td>
-                    <td><input type="text" [className]="readonly ? 'read' : ''" [(ngModel)]="el.lastName" [readonly]="readonly"></td>
-                    <td><input type="text" [className]="readonly ? 'read' : ''" [(ngModel)]="el.gender" style="width:50px" [readonly]="readonly"></td>
-                    <td><input type="text" [className]="readonly ? 'read' : ''" [(ngModel)]="el.hireDate" [readonly]="readonly"></td>
-                    <td><input type="text" [className]="readonly ? 'read' : ''" [(ngModel)]="el.birthDate" [readonly]="readonly"></td>
+                    <td><input type="text" [className]="modifyID != i ? 'read' : ''" [(ngModel)]="el.firstName" [readonly]="modifyID != i"></td>
+                    <td><input type="text" [className]="modifyID != i ? 'read' : ''" [(ngModel)]="el.lastName" [readonly]="modifyID != i"></td>
+                    <td><input type="text" [className]="modifyID != i ? 'read' : ''" [(ngModel)]="el.gender"  [readonly]="modifyID != i"></td>
+                    <td><input type="text" [className]="modifyID != i ? 'read' : ''" [(ngModel)]="el.hireDate" [readonly]="modifyID != i"></td>
+                    <td><input type="text" [className]="modifyID != i ? 'read' : ''" [(ngModel)]="el.birthDate" [readonly]="modifyID != i"></td>
                     <td>
-                        <button (click)="elimina(i)" class="btn btn-danger">Elimina</button>
+                        <button style="display: inline-block;" (click)="elimina(i)" class="btn btn-danger">Elimina</button>
+                        <div style="display: inline-block; margin-left : 10px;"*ngIf="modifyID != i;">
+                            <button (click)="modifica(i)" class="btn btn-primary">Modifica</button>
+                        </div>
+                        <div style="display: inline-block; margin-left : 10px;"*ngIf="modifyID == i">
+                            <button (click)="conferma()" class="btn btn-primary">Conferma</button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -41,7 +110,7 @@
 
 
 
-
+<!--
     <div class="modal fade" id="aggiungimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -96,7 +165,7 @@
             </div>
         </div>
     </div>
-<!--
+
     <div class="container text-center">
         <button type="button" id="first" class="btn btn-light pagina zero">Prima</button>
         <button type="button" id="prev" class="btn btn-light pagina zero">Precedente</button>

@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { TableComponent } from './table/table.component';
 import { ModalComponent } from './modal/modal.component';
 import { DataService } from './data.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { DataService } from './data.service';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatTableModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

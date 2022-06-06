@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../data.service';
 import { Employees } from '../types/Employees';
-import { Dati } from '../types/dati';
+import { Dati } from '../types/Dati';
 
 @Component({
   selector: 'app-modal',

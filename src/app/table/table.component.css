@@ -5,13 +5,16 @@ h2{
 
 .titolo{
     margin-top: 50px;
-    margin-right: 20px;
     float: right;
     display: inline-block;
 
 }
 
-.read{border:0;outline:0;text-align: center;}
+input{
+  width: 100%
+}
+
+.read{border:0;outline:0;text-align: center; user-select: none;}
 
 tr:nth-of-type(odd) .read {
     background-color:#f2f2f2 ;
